@@ -47,7 +47,13 @@ Constraints:
 
 ## Project Context
 
-Harubit is a daily faith platform that connects scripture reading, reflection, and community sharing.
+Harubit is a faith routine platform where individuals and communities read scripture, write reflections, share keywords, and track Bible reading progress.
+
+Primary MVP goal:
+- A user joins a group, reads today’s Bible passage, marks it as read, writes a one-line reflection and keyword, and the leader checks participation progress.
+
+Reference:
+- Product requirements: `docs/harubit-mvp-prd.md`
 
 Tech Stack:
 - Next.js (App Router)
