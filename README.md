@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **🌤 하루빛 (HARUBIT)**
 
-## Getting Started
+> “말씀은 내 발의 등이요 내 길의 빛이라” (시편 119:105) </br>
+> 하루를 비추는 한 줄기 빛처럼, 오늘의 삶 속에 신앙의 방향을 제시하는 플랫폼
+> 
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **🧭 1. 서비스 개요 (Service Overview)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**‘하루빛’** 은 매일의 삶 속에서 **신앙의 루틴과 실천을 이어주는 하이브리드 플랫폼**입니다.
+사용자는 하루 한 줄 말씀을 통해 자신의 내면을 돌아보고,
+그날의 생각과 결단을 기록하며,
+공동체와 나눔을 통해 지속적인 **‘빛의 여정(Journey of Light)’** 을 완성합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+‘하루빛’은 단순한 성경 읽기 앱을 넘어,
+**“신앙의 실천 → 나눔 → 성장”** 으로 이어지는 **순환형 구조**를 기반으로 합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **🔹 핵심 개념**
 
-## Learn More
+| **영역** | **설명** |
+| --- | --- |
+| **말씀 (Word)** | 하루를 비추는 말씀 구절 제공 (버전별 선택 가능) |
+| **비춤 (Light)** | 말씀에 대한 묵상과 적용을 돕는 실천 제안 기능 |
+| **나눔 (Share)** | 개인 묵상 기록 및 공동체 간 피드·댓글 기반 교류 |
 
-To learn more about Next.js, take a look at the following resources:
+### **🔹 서비스 형태**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **하이브리드 웹앱 (Next.js + Spring Boot 기반 API)**
+    
+    웹과 모바일 환경 모두에서 동일한 사용성을 제공
+    
+- **PWA 지원 및 오프라인 모드**
+    
+    일상 속에서도 접근 가능한 ‘항상 켜진 신앙 플랫폼’
+    
+- **공동체 중심 UX**
+    
+    교회, 셀, 청년부 등 커뮤니티 단위의 그룹 운영 지원
+    
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## **💎 2. 핵심 가치 (Core Values)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| **핵심 가치** | **설명** | **기술적 실현 방식** |
+| --- | --- | --- |
+| **빛의 여정성 (Journey of Light)** | 사용자가 하루하루 말씀을 통해 삶의 방향을 찾도록 돕는다. | 시즌별 성경 플랜 + 기록 기반 진행률 시스템 |
+| **지속성 (Consistency)** | 하루의 루틴 속에서 신앙을 습관화한다. | 알림·출석·리워드 구조 설계 |
+| **공동체성 (Community)** | 개인의 묵상이 ‘함께 성장하는 신앙’으로 확장된다. | 그룹 피드, 댓글, 좋아요, 공유 기능 |
+| **접근성 (Accessibility)** | 누구나, 어디서나 접근 가능한 반응형 구조 | PWA, 모바일 퍼스트 UI, shadcn/ui |
+| **단순함 (Simplicity)** | UI는 간결하되, 경험은 깊고 직관적으로 | shadcn/ui + Tailwind + UX Flow 정교화 |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## **🎯 3. 타깃 사용자 (Target Users)**
+
+| **구분** | **세부 설명** | **주요 니즈** |
+| --- | --- | --- |
+| **개인 신앙인** | 하루 말씀과 묵상 루틴을 통해 신앙을 유지하려는 사용자 | 단순하고 직관적인 말씀·기록 기능 |
+| **청년층 / 직장인** | 빠른 일상 속에서도 간결한 신앙 경험을 원하는 사용자 | 모바일 친화적 UI, 알림 기반 루틴 |
+| **교회 / 소그룹 리더** | 구성원 관리 및 나눔 중심 운영자 | 그룹 관리, 참여율 모니터링 |
+| **공동체 전체** | 말씀을 중심으로 연결된 신앙 커뮤니티 구축 | 게시판, 피드, 챌린지형 캠페인 |
+
+---
+
+## **💡 4. 비전 (Vision)**
+
+> **“하루빛은 신앙을 ‘의무’가 아닌 ‘여정’으로 만든다.”**
+> 
+
+우리는 매일의 작은 묵상을 통해 삶의 방향을 찾고, 공동체 속에서 서로의 여정을 비추며,
+세상 속에서 ‘빛으로 사는 하루’를 완성하도록 돕는다.
+
+**기술은 단지 도구가 아니라 ‘신앙의 연결고리’** 로 작동한다. 
+UX와 데이터는 사람을 이해하기 위해 존재하며,
+‘하루빛’은 그 이해를 바탕으로 **신앙의 지속성과 진정성을 확장**한다.
+
+---
+
+### 🌤️ **하루빛은 기술과 신앙의 경계를 허무는 플랫폼입니다.**
+
+매일의 말씀을 통해 개인은 빛을 발견하고,
+그 빛이 공동체를 비추며, 세상 속에서 한 줄기 ‘빛의 삶’을 살아가도록 돕습니다.
+
+우리는 기술을 통해 ‘신앙의 일상화’를 이루고,
+그 일상을 통해 세상을 다시 비추는 **“빛의 생태계”** 를 만들어갑니다.
