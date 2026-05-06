@@ -1,169 +1,41 @@
 # AGENTS.md
 
+This file defines project-wide rules for Codex and other AI coding agents working in this repository.
+(이 문서는 이 저장소에서 작업하는 Codex 및 AI 코딩 에이전트의 전역 규칙을 정의한다)
+
+For Firebase implementation details inside `src/lib/firebase/`, also follow `src/lib/firebase/AGENTS.md`.
+(`src/lib/firebase/` 내부 Firebase 구현 세부 규칙은 `src/lib/firebase/AGENTS.md`도 함께 따른다)
+
+---
+
 ## Operational Commands (실행 명령어)
 
-- Install: `bun install`
-- Dev: `bun run dev`
-- Build: `bun run build`
-- Start: `bun run start`
-- Lint: `bun run lint`
+- Install dependencies with `bun install`.
+  (의존성 설치는 `bun install`을 사용한다)
 
-Constraints (제약 조건):
-- Package manager is fixed to `bun` (bun만 사용)
-- Do not use npm, yarn, or pnpm (다른 패키지 매니저 금지)
-- Do not modify scripts in package.json without explicit reason (scripts 수정 금지)
+- Run the dev server with `bun run dev`.
+  (개발 서버는 `bun run dev`로 실행한다)
 
+- Build with `bun run build`.
+  (빌드는 `bun run build`로 실행한다)
 
----
+- Start production mode with `bun run start`.
+  (프로덕션 실행은 `bun run start`를 사용한다)
 
-## Golden Rules (핵심 규칙)
+- Lint with `bun run lint`.
+  (린트는 `bun run lint`로 실행한다)
 
-### Immutable Rules (절대 규칙)
+Constraints:
+(제약 조건)
 
-- Never hardcode secrets (API keys, Firebase config)
-  (비밀 값 하드코딩 금지)
+- Use `bun` only. Do not use `npm`, `yarn`, or `pnpm`.
+  (`bun`만 사용하고 `npm`, `yarn`, `pnpm`은 사용하지 않는다)
 
-- Always use environment variables (`.env.local`)
-  (환경 변수 사용 필수)
+- Do not modify `package.json` scripts unless the task explicitly requires it.
+  (명시적 필요가 없으면 `package.json` scripts를 수정하지 않는다)
 
-- Do not break existing routing structure (Next.js App Router)
-  (라우팅 구조 변경 금지)
-
-- Do not introduce new state management libraries
-  (상태관리 라이브러리 추가 금지)
-
-- Do not replace Firebase with another backend
-  (Firebase 교체 금지)
-
-- Do not install unnecessary dependencies
-  (불필요한 의존성 설치 금지)
-
-
----
-
-### Do's (해야 할 것)
-
-- Use TypeScript strictly (no `any`)
-  (`any` 사용 금지)
-
-- Use functional components only
-  (함수형 컴포넌트만 사용)
-
-- Use server/client separation correctly (Next.js App Router)
-  (Server / Client 분리 엄격히)
-
-- Use `fetch` instead of axios
-  (axios 대신 fetch 사용)
-
-- Use Zustand only for global client state
-  (전역 상태는 Zustand만 사용)
-
-- Use SWR for client-side data fetching
-  (클라이언트 데이터 패칭은 SWR 사용)
-
-- Keep components small and reusable
-  (컴포넌트는 작고 재사용 가능하게)
-
-- Follow existing UI patterns (shadcn/ui + Tailwind)
-  (기존 UI 패턴 유지)
-
-
----
-
-### Don'ts (하지 말 것)
-
-- Do not mix server and client logic in one file
-  (Server/Client 로직 혼합 금지)
-
-- Do not create deeply nested component structures
-  (깊은 컴포넌트 구조 금지)
-
-- Do not duplicate logic across components
-  (중복 로직 금지)
-
-- Do not modify unrelated files
-  (관련 없는 파일 수정 금지)
-
-- Do not refactor large areas without explicit instruction
-  (대규모 리팩토링 금지)
-
-
----
-
-## Firebase Rules (Firebase 전역 규칙)
-
-- Firebase is the required backend for this project. Do not replace it with another backend.
-  (Firebase는 이 프로젝트의 필수 백엔드이며, 다른 백엔드로 교체하지 않는다)
-
-- Never hardcode Firebase config, API keys, project IDs, bucket names, or service credentials.
-  (Firebase 설정값, API 키, 프로젝트 ID, 버킷명, 서비스 계정 정보 하드코딩 금지)
-
-- Use `NEXT_PUBLIC_FIREBASE_*` environment variables only for browser-safe Firebase client config.
-  (브라우저에 노출 가능한 Firebase 클라이언트 설정에만 `NEXT_PUBLIC_FIREBASE_*` 환경 변수를 사용한다)
-
-- Keep Firebase client SDK setup inside `src/lib/firebase/`.
-  (Firebase 클라이언트 SDK 설정은 `src/lib/firebase/` 내부에서만 관리한다)
-
-- Do not initialize Firebase apps directly inside pages, layouts, hooks, or components.
-  (페이지, 레이아웃, 훅, 컴포넌트 내부에서 Firebase 앱을 직접 초기화하지 않는다)
-
-- Do not use Firebase Admin SDK in Client Components.
-  (Client Component에서 Firebase Admin SDK를 사용하지 않는다)
-
-- Do not introduce Firebase Cloud Functions unless explicitly requested.
-  (명시적인 요청 없이 Firebase Cloud Functions를 추가하지 않는다)
-
-- Firestore collection names must follow the MVP data model.
-  (Firestore 컬렉션 이름은 MVP 데이터 모델을 따라야 한다)
-
-  - `users`
-  - `groups`
-  - `groupMembers`
-  - `courses`
-  - `biblePlans`
-  - `readingProgress`
-  - `reflections`
-  - `keywords`
-
-- Do not rename, singularize, pluralize, or alias collection names inconsistently.
-  (컬렉션 이름을 임의로 변경하거나 단수/복수 형태를 섞어 사용하지 않는다)
-
-- Reflect the MVP role model consistently.
-  (MVP 권한 모델을 일관되게 반영한다)
-
-  - `USER`
-  - `LEADER`
-  - `ADMIN`
-
-- Role checks must be consistent across UI, API routes, server logic, and Firestore Security Rules.
-  (권한 검사는 UI, API Route, 서버 로직, Firestore Security Rules 전반에서 일관되게 적용한다)
-
-- Optimize Firestore reads for MVP flows. Prefer direct document reads and indexed queries over broad collection scans.
-  (MVP 흐름에서는 전체 컬렉션 스캔보다 직접 문서 조회와 인덱스 기반 쿼리를 우선한다)
-
-- Minimize unnecessary Firestore reads to reduce cost and improve performance.
-  (비용 절감과 성능 개선을 위해 불필요한 Firestore read를 최소화한다)
-
-- Any Firebase feature work must consider client-side validation and Firebase Security Rules together.
-  (Firebase 기능 구현 시 클라이언트 검증과 Security Rules를 함께 고려한다)
-
-- Never trust client-side validation alone.
-  (클라이언트 검증만 신뢰하지 않는다)
-
-- Firestore writes must be scoped to the minimum required fields.
-  (Firestore 쓰기 작업은 필요한 최소 필드만 대상으로 한다)
-
-- Avoid deeply nested Firestore document structures unless explicitly required.
-  (명시적 요구가 없다면 깊은 중첩 문서 구조를 피한다)
-
-- Prefer predictable and scalable Firestore document structures.
-  (예측 가능하고 확장 가능한 Firestore 구조를 우선한다)
-
-- Any schema change must preserve MVP compatibility.
-  (스키마 변경 시 MVP 호환성을 유지한다)
-
-Reference:
-- Product requirements: `docs/harubit-mvp-prd.md`
+- Do not install dependencies unless the task explicitly requires them.
+  (명시적 필요가 없으면 의존성을 설치하지 않는다)
 
 ---
 
@@ -172,11 +44,13 @@ Reference:
 Harubit is a faith routine platform where individuals and communities read scripture, write reflections, share keywords, and track Bible reading progress.
 (하루빛은 말씀 읽기, 묵상 작성, 키워드 나눔, 성경 읽기 진행률을 관리하는 신앙 루틴 플랫폼이다)
 
-The platform focuses on lightweight daily faith participation and community engagement.
-(가볍고 지속 가능한 신앙 루틴과 공동체 참여를 목표로 한다)
+The MVP focuses on lightweight daily participation and community engagement.
+(MVP는 가볍고 지속 가능한 일일 참여와 공동체 참여에 집중한다)
 
-Tech Stack:
-- Next.js (App Router)
+Tech stack:
+(기술 스택)
+
+- Next.js App Router
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
@@ -187,175 +61,298 @@ Tech Stack:
 - SWR
 - Vercel
 
+Product reference:
+(제품 참고 문서)
+
+- `docs/harubit-mvp-prd.md`
 
 ---
 
-## Primary MVP Goal (MVP 핵심 목표)
+## Primary MVP Flow (MVP 핵심 흐름)
 
-A user joins a group, reads today’s Bible passage, marks it as read, writes a one-line reflection and keyword, and the leader checks participation progress.
-(사용자는 그룹에 참여하여 오늘의 말씀을 읽고, 읽음 처리 후 한 줄 묵상과 키워드를 작성하며, 리더는 참여 현황을 확인한다)
+The core MVP flow must remain simple and maintainable.
+(핵심 MVP 흐름은 단순하고 유지보수 가능해야 한다)
 
-Core MVP Flow:
-1. User joins a group
-   (그룹 참여)
+1. A user joins a group.
+   (사용자가 그룹에 참여한다)
 
-2. User reads today's Bible passage
-   (오늘의 말씀 읽기)
+2. A user reads today's Bible passage.
+   (사용자가 오늘의 말씀을 읽는다)
 
-3. User marks reading progress
-   (읽음 처리)
+3. A user marks reading progress.
+   (사용자가 읽음 처리한다)
 
-4. User writes reflection and keyword
-   (묵상 및 키워드 작성)
+4. A user writes a one-line reflection and keyword.
+   (사용자가 한 줄 묵상과 키워드를 작성한다)
 
-5. Leader checks participation status
-   (리더가 참여 현황 확인)
-
+5. A leader checks participation status.
+   (리더가 참여 현황을 확인한다)
 
 ---
 
-## MVP Design Principles (MVP 설계 원칙)
+## Immutable Rules (절대 규칙)
 
-- Keep the MVP simple and maintainable
-  (단순하고 유지보수 가능한 구조 유지)
+- Never hardcode secrets, API keys, Firebase config, project IDs, bucket names, or service credentials.
+  (비밀 값, API 키, Firebase 설정, 프로젝트 ID, 버킷명, 서비스 계정 정보를 하드코딩하지 않는다)
 
-- Prioritize fast iteration over over-engineering
-  (과도한 설계보다 빠른 개선 우선)
+- Use environment variables for configuration. Use `.env.local` for local development values.
+  (설정값은 환경 변수를 사용하고, 로컬 개발 값은 `.env.local`을 사용한다)
 
-- Optimize for mobile-first experience
-  (모바일 퍼스트 경험 최적화)
+- Do not replace Firebase with another backend.
+  (Firebase를 다른 백엔드로 교체하지 않는다)
 
-- Reduce user interaction friction wherever possible
-  (사용자 입력 피로 최소화)
+- Do not break the existing Next.js App Router structure.
+  (기존 Next.js App Router 구조를 깨지 않는다)
 
-- Prefer reusable UI and predictable data flow
-  (재사용 가능한 UI와 예측 가능한 데이터 흐름 선호)
+- Do not introduce new state management libraries.
+  (새 상태관리 라이브러리를 추가하지 않는다)
 
-- Avoid unnecessary abstraction in the MVP stage
-  (MVP 단계에서 불필요한 추상화 금지)
+- Do not modify unrelated files.
+  (관련 없는 파일을 수정하지 않는다)
 
-
----
-
-## Product Reference (참고 문서)
-
-- Product requirements: `docs/harubit-mvp-prd.md`
-  (서비스 요구사항 문서)
-
+- Do not perform large refactors unless explicitly requested.
+  (명시적 요청 없이 대규모 리팩토링을 하지 않는다)
 
 ---
 
-## Standards & References (개발 기준)
+## Development Standards (개발 기준)
+
+### TypeScript & React (TypeScript 및 React)
+
+- Use strict TypeScript. Do not use `any`.
+  (엄격한 TypeScript를 사용하고 `any`를 사용하지 않는다)
+
+- Use functional components only.
+  (함수형 컴포넌트만 사용한다)
+
+- Keep Server Components and Client Components clearly separated.
+  (Server Component와 Client Component를 명확히 분리한다)
+
+- Do not mix server-only logic and client UI logic in one file.
+  (server-only 로직과 client UI 로직을 한 파일에 섞지 않는다)
+
+- Keep components small, focused, and reusable.
+  (컴포넌트는 작고 명확하며 재사용 가능하게 유지한다)
+
+### Data Fetching & State (데이터 패칭 및 상태)
+
+- Use `fetch` instead of `axios`.
+  (`axios` 대신 `fetch`를 사용한다)
+
+- Use SWR for client-side data fetching.
+  (클라이언트 데이터 패칭에는 SWR을 사용한다)
+
+- Use Zustand only for global client state.
+  (전역 클라이언트 상태에는 Zustand만 사용한다)
+
+- Avoid duplicating data access logic across components.
+  (컴포넌트 간 데이터 접근 로직 중복을 피한다)
+
+### UI (UI)
+
+- Follow existing shadcn/ui and Tailwind patterns.
+  (기존 shadcn/ui 및 Tailwind 패턴을 따른다)
+
+- Optimize for mobile-first MVP usage.
+  (모바일 퍼스트 MVP 사용성을 우선한다)
+
+- Reduce interaction friction for daily reading, reflection, and progress flows.
+  (말씀 읽기, 묵상, 진행률 흐름의 입력 피로를 줄인다)
+
+- Do not create deeply nested component structures.
+  (깊게 중첩된 컴포넌트 구조를 만들지 않는다)
 
 ### Code Style (코드 스타일)
 
-- Follow existing ESLint + Prettier configuration
-  (기존 린트 규칙 준수)
+- Follow the existing ESLint and Prettier configuration.
+  (기존 ESLint 및 Prettier 설정을 따른다)
 
-- Use absolute imports if configured (`@/`)
-  (절대경로 사용)
+- Use absolute imports with `@/` when already configured.
+  (설정된 경우 `@/` 절대 경로를 사용한다)
 
-- File naming:
-  - components: PascalCase
-  - hooks: camelCase (`useSomething`)
-  - utils: camelCase
+- Use PascalCase for components.
+  (컴포넌트 파일명과 컴포넌트명은 PascalCase를 사용한다)
 
-
----
-
-### Git Rules (깃 규칙)
-
-- Commit message format:
-  - feat: new feature
-  - fix: bug fix
-  - refactor: code structure change
-  - chore: setup/config
-
-- Keep commits small and focused
-  (작고 명확한 커밋 유지)
-
-- Always follow issue and PR templates in `.github/`
-  (`.github` 템플릿 반드시 사용)
-
-- Do not create custom formats for issues or PRs
-  (임의 형식 생성 금지)
-
+- Use camelCase for hooks and utilities.
+  (훅과 유틸은 camelCase를 사용한다)
 
 ---
 
-## Maintenance Policy (유지보수 정책)
+## Firebase Boundary Rules (Firebase 경계 규칙)
 
-- If code and rules conflict, propose update to AGENTS.md
-  (코드와 규칙 충돌 시 AGENTS.md 수정 제안)
+Root-level Firebase rules define architecture and safety boundaries only.
+(루트 Firebase 규칙은 아키텍처와 안전 경계만 정의한다)
 
-- Remove outdated rules instead of layering new ones
-  (구 규칙 제거 우선)
+Detailed Firebase SDK initialization, helper, mapping, and query rules belong in `src/lib/firebase/AGENTS.md`.
+(Firebase SDK 초기화, helper, mapping, query 세부 규칙은 `src/lib/firebase/AGENTS.md`에 둔다)
 
-- Keep this file under 500 lines
-  (500줄 이하 유지)
+- Keep Firebase as the required backend.
+  (Firebase를 필수 백엔드로 유지한다)
 
+- Keep Firebase client SDK setup inside `src/lib/firebase/`.
+  (Firebase 클라이언트 SDK 설정은 `src/lib/firebase/` 내부에 둔다)
+
+- Do not initialize Firebase apps inside pages, layouts, hooks, or components.
+  (페이지, 레이아웃, 훅, 컴포넌트 내부에서 Firebase 앱을 초기화하지 않는다)
+
+- Do not use Firebase Admin SDK in Client Components.
+  (Client Component에서 Firebase Admin SDK를 사용하지 않는다)
+
+- Do not introduce Firebase Cloud Functions unless explicitly requested.
+  (명시적 요청 없이 Firebase Cloud Functions를 추가하지 않는다)
+
+- Use `NEXT_PUBLIC_FIREBASE_*` only for browser-safe Firebase client config.
+  (브라우저에 노출 가능한 Firebase 클라이언트 설정에만 `NEXT_PUBLIC_FIREBASE_*`를 사용한다)
+
+- Treat client-side validation as UX only. Security must also be enforced with Firebase Security Rules or trusted server logic.
+  (클라이언트 검증은 UX로만 취급하고, 보안은 Firebase Security Rules 또는 신뢰 가능한 서버 로직으로도 강제한다)
+
+### MVP Firestore Collections (MVP Firestore 컬렉션)
+
+Use these collection names consistently:
+(아래 컬렉션 이름을 일관되게 사용한다)
+
+- `users`
+- `groups`
+- `groupMembers`
+- `courses`
+- `biblePlans`
+- `readingProgress`
+- `reflections`
+- `keywords`
+
+Do not rename, singularize, pluralize, or alias collection names inconsistently.
+(컬렉션 이름을 임의로 변경하거나 단수/복수 형태 또는 별칭을 섞어 사용하지 않는다)
+
+### MVP Roles (MVP 권한)
+
+Use these role values consistently across UI, API routes, server logic, Firestore helpers, and Firebase Security Rules:
+(UI, API Route, 서버 로직, Firestore helper, Firebase Security Rules 전반에서 아래 권한 값을 일관되게 사용한다)
+
+- `USER`
+- `LEADER`
+- `ADMIN`
 
 ---
 
-## Execution Protocol (작업 프로토콜)
+## Firestore Data Principles (Firestore 데이터 원칙)
 
-Before making any changes:
+- Prefer direct document reads and indexed queries over broad collection scans.
+  (전체 컬렉션 스캔보다 직접 문서 조회와 인덱스 기반 쿼리를 우선한다)
 
-1. Analyze current code structure
-   (현재 구조 분석)
+- Minimize unnecessary Firestore reads to reduce cost and improve performance.
+  (비용 절감과 성능 개선을 위해 불필요한 Firestore read를 최소화한다)
 
-2. Explain the plan before editing
-   (수정 전 계획 설명)
+- Scope Firestore writes to the minimum required fields.
+  (Firestore 쓰기는 필요한 최소 필드로 제한한다)
 
-3. Limit changes to the smallest possible scope
-   (최소 범위 수정)
+- Avoid deeply nested Firestore document structures unless explicitly required.
+  (명시적 요구가 없다면 깊은 중첩 문서 구조를 피한다)
 
-
-After making changes:
-
-1. List modified files
-2. Explain why each change was made
-3. Provide verification steps
-4. Ensure `bun run lint` passes
-
+- Any schema change must preserve MVP compatibility.
+  (스키마 변경은 MVP 호환성을 유지해야 한다)
 
 ---
 
-## Work Strategy (작업 전략)
+## Git Rules (깃 규칙)
+
+- Keep commits small and focused.
+  (커밋은 작고 명확하게 유지한다)
+
+- Use conventional commit prefixes.
+  (관례적 커밋 prefix를 사용한다)
+
+  - `feat`: new feature
+  - `fix`: bug fix
+  - `refactor`: code structure change without behavior change
+  - `chore`: setup, config, or maintenance
+  - `docs`: documentation-only change
+  - `test`: test-only change
+
+- Do not push directly to `main`.
+  (`main` 브랜치에 직접 push하지 않는다)
+
+- Use the `codex/` branch prefix for Codex-created branches unless the user requests another branch name.
+  (사용자가 다른 이름을 요청하지 않으면 Codex 생성 브랜치는 `codex/` prefix를 사용한다)
+
+---
+
+## GitHub Workflow Rules (GitHub 작업 규칙)
+
+- Read `.github/ISSUE_TEMPLATE/` before creating or editing issues.
+  (이슈 생성 또는 수정 전 `.github/ISSUE_TEMPLATE/`를 확인한다)
+
+- Choose the existing issue template that matches the work type.
+  (작업 유형에 맞는 기존 이슈 템플릿을 선택한다)
+
+- Use `.github/pull_request_template.md` for PR descriptions.
+  (PR 설명은 `.github/pull_request_template.md`를 사용한다)
+
+- Do not change issue or PR template structure unless explicitly requested.
+  (명시적 요청 없이 이슈 또는 PR 템플릿 구조를 바꾸지 않는다)
+
+- Link related issues in PR descriptions with `Close #issue_number` or `Closes #issue_number`.
+  (PR 설명에는 `Close #issue_number` 또는 `Closes #issue_number`로 관련 이슈를 연결한다)
+
+- Fill the PR checklist honestly based on actual verification.
+  (실제 검증 결과를 기준으로 PR 체크리스트를 정직하게 작성한다)
+
+---
+
+## Codex Work Protocol (Codex 작업 프로토콜)
 
 Always follow this order:
+(항상 아래 순서를 따른다)
 
-1. Analyze
-2. Plan
-3. Implement (small scope only)
-4. Verify
+1. Analyze the current structure and relevant files.
+   (현재 구조와 관련 파일을 분석한다)
 
-Never skip steps.
-(절대 단계 생략 금지)
+2. State assumptions and define the scope.
+   (가정을 명시하고 범위를 정의한다)
 
+3. Explain the plan before editing.
+   (수정 전에 계획을 설명한다)
 
----
+4. Implement the smallest focused change.
+   (가장 작은 범위의 집중된 변경을 구현한다)
 
-## Scope Control (범위 통제)
+5. Verify with the appropriate command or explain why verification was not run.
+   (적절한 명령으로 검증하거나 검증하지 못한 이유를 설명한다)
 
-- Define clear boundaries
-  (명확한 범위 정의)
+6. Summarize modified files and reasons.
+   (수정 파일과 이유를 요약한다)
 
-- Do not expand scope implicitly
-  (암묵적 확장 금지)
-
-- If scope is unclear, mark assumptions explicitly
-  (불명확 시 가정 명시)
-
-- Avoid large, multi-feature implementations in one step
-  (대규모 작업 금지)
-
+Never skip analysis, planning, implementation, or verification.
+(분석, 계획, 구현, 검증 단계를 생략하지 않는다)
 
 ---
 
-## Output Format (응답 형식)
+## Codex Behavior Rules (Codex 행동 규칙)
 
-Every response must include:
+- Read relevant files before making changes.
+  (수정 전 관련 파일을 읽는다)
+
+- Prefer modifying existing code over creating new files.
+  (새 파일 생성보다 기존 코드 수정을 우선한다)
+
+- Do not hallucinate missing files, APIs, routes, schemas, or templates.
+  (존재하지 않는 파일, API, 라우트, 스키마, 템플릿을 만들었다고 가정하지 않는다)
+
+- If scope is unclear, make a reasonable assumption and state it explicitly.
+  (범위가 불명확하면 합리적으로 가정하고 명시한다)
+
+- Do not expand scope implicitly.
+  (범위를 암묵적으로 확장하지 않는다)
+
+- If project rules and code conflict, propose an `AGENTS.md` update instead of layering inconsistent exceptions.
+  (프로젝트 규칙과 코드가 충돌하면 예외를 덧붙이기보다 `AGENTS.md` 수정을 제안한다)
+
+---
+
+## Response Format (응답 형식)
+
+Every substantial response should include:
+(실질적인 작업 응답에는 아래 항목을 포함한다)
 
 - Analysis
 - Plan
@@ -363,44 +360,20 @@ Every response must include:
 - Verification
 
 Keep responses concise and structured.
-(간결하고 구조적으로 작성)
-
-
----
-
-## Codex Behavior Rules (Codex 행동 규칙)
-
-- Always read relevant files before making changes
-  (수정 전 관련 파일 반드시 확인)
-
-- Do not hallucinate missing files or APIs
-  (존재하지 않는 코드 생성 금지)
-
-- Prefer modifying existing code over creating new files
-  (기존 코드 우선 수정)
-
-- Do not over-engineer solutions
-  (과도한 설계 금지)
-
-- If uncertain, make reasonable assumptions and state them clearly
-  (불확실 시 가정 명시)
-
+(응답은 간결하고 구조적으로 작성한다)
 
 ---
 
-## GitHub Workflow Rules (GitHub 작업 규칙)
+## Maintenance Policy (유지보수 정책)
 
-- Always read `.github/ISSUE_TEMPLATE/` before creating issues
-  (이슈 템플릿 반드시 확인)
+- Keep this file maintainable and under 500 lines.
+  (이 파일은 유지보수 가능하게 유지하고 500줄 이하로 관리한다)
 
-- Always use `.github/pull_request_template.md` for PRs
-  (PR 템플릿 반드시 사용)
+- Remove outdated rules instead of adding overlapping rules.
+  (겹치는 규칙을 추가하기보다 오래된 규칙을 제거한다)
 
-- Do not change template structure
-  (템플릿 구조 변경 금지)
+- Keep root rules focused on project-wide behavior.
+  (루트 규칙은 프로젝트 전역 행동에 집중한다)
 
-- Include `Closes #issue_number` in PR description
-  (이슈 연결 필수)
-
-- Do not push directly to main branch
-  (main 직접 push 금지)
+- Keep module-specific rules in nested `AGENTS.md` files.
+  (모듈별 규칙은 하위 `AGENTS.md` 파일에 둔다)
